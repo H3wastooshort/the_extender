@@ -8131,6 +8131,25 @@
     (pin "1" (uuid f6573ac4-bf8e-4213-a6ea-7400fffa4fa5))
   )
 
+  (symbol (lib_id "Device:C") (at 73.66 133.35 90) (unit 1)
+    (in_bom yes) (on_board yes)
+    (uuid 969ca741-ce84-4255-8947-4da4ccf7f630)
+    (property "Reference" "C9" (id 0) (at 72.39 130.81 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1u" (id 1) (at 74.93 130.81 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" (id 2) (at 77.47 132.3848 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 73.66 133.35 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 988c8cc5-e89a-4dcc-903e-91e9a65c27c6))
+    (pin "2" (uuid 6038bd12-262b-4f73-be0d-40a2a29e9b8d))
+  )
+
   (symbol (lib_id "Connector:USB_C_Receptacle_USB2.0") (at 284.48 204.47 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 99b3fd77-da13-4321-b5b1-c8bab6e7cb60)
@@ -9941,6 +9960,9 @@
     )
     (path "/cee05e05-d736-4eee-9408-f8aad1feb5a2"
       (reference "C8") (unit 1) (value "100n") (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+    )
+    (path "/969ca741-ce84-4255-8947-4da4ccf7f630"
+      (reference "C9") (unit 1) (value "1u") (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
     )
     (path "/d89905a7-5f72-4d61-9664-b9353d028220"
       (reference "C10") (unit 1) (value "10u") (footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
