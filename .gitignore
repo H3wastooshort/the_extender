@@ -28,3 +28,4 @@ fp-info-cache
 *.xml
 *.csv
 hardware/\#auto_saved_files\#
+hardware/production

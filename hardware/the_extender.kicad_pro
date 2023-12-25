@@ -419,7 +419,6 @@
         "microvia_drill": 0.1,
         "name": "PowerL",
         "nets": [
-          "+3.3VP",
           "+3V3",
           "+5VA",
           "GNDA"
