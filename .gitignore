@@ -30,3 +30,7 @@ fp-info-cache
 hardware/\#auto_saved_files\#
 hardware/production
 hardware/bom
+*.gbr
+*.zip
+*.pdf
+*.drl

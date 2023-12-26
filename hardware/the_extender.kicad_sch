@@ -8186,8 +8186,8 @@
     (in_bom yes) (on_board yes)
     (uuid 99b3fd77-da13-4321-b5b1-c8bab6e7cb60)
     (property "Reference" "J1" (id 0) (at 284.48 181.61 0))
-    (property "Value" "USB_C_Receptacle_USB2.0" (id 1) (at 284.48 184.15 0))
-    (property "Footprint" "e2k_edit:USB-C-SMD_TYPE-C-6PIN-2MD-073" (id 2) (at 288.29 204.47 0)
+    (property "Value" "" (id 1) (at 284.48 184.15 0))
+    (property "Footprint" "" (id 2) (at 288.29 204.47 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" (id 3) (at 288.29 204.47 0)
@@ -10117,7 +10117,7 @@
       (reference "J0") (unit 1) (value " U262-241N-4BV60") (footprint "e2k_edit:USB-C-SMD_U262-241N-4BV60")
     )
     (path "/99b3fd77-da13-4321-b5b1-c8bab6e7cb60"
-      (reference "J1") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "e2k_edit:USB-C-SMD_TYPE-C-6PIN-2MD-073")
+      (reference "J1") (unit 1) (value "USB-TYPE-C-010") (footprint "e2k_edit:USB-C-SMD_TYPE-C-6PIN-2MD-073")
     )
     (path "/efed6990-d25b-40a3-a7a9-8cc09ff732e7"
       (reference "J2") (unit 1) (value "U231-091N-3BLRC11") (footprint "easyeda2kicad:USB-A-TH_XKB_U231-091N-XXX")
