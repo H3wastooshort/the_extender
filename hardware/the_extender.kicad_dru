@@ -1,17 +1,6 @@
 (version 1)
 #Kicad 7
 
-# 2-layer, 1oz copper
-(rule "Minimum Trace Width (outer layer)"
-	(constraint track_width (min 5mil))
-	(layer outer)
-	(condition "A.Type == 'track'"))
-
-(rule "Minimum Trace Spacing (outer layer)"
-	(constraint clearance (min 5mil))
-	(layer outer)
-	(condition "A.Type == 'track' && B.Type == A.Type"))
-
 # 4-layer
 (rule "Minimum Trace Width and Spacing (inner layer)"
 	(constraint track_width (min 3.5mil))
@@ -22,6 +11,17 @@
 	(constraint clearance (min 3.5mil))
 	(layer inner)
 	(condition "A.Type == 'track' && B.Type == A.Type"))
+
+# silkscreen (Kicad 7 only)
+#(rule "Minimum Text"
+#	(constraint text_thickness (min 0.15mm))
+#	(constraint text_height (min 1mm))
+#	(layer "?.Silkscreen"))
+
+#(rule "Pad to Silkscreen"
+#	(constraint silk_clearance (min 0.15mm))
+#	(layer outer)
+#	(condition "A.Type == 'pad' && (B.Type == 'text' || B.Type == 'graphic')"))
 
 # edge clearance
 (rule "Trace to Outline"
