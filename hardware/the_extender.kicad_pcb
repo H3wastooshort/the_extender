@@ -458,7 +458,7 @@
     (pad "S1" thru_hole oval (at 4.49 3.1) (size 1.8 1) (drill oval 1.099998 0.500024) (layers *.Cu *.Mask)
       (net 3 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp b85ad6a6-6103-4c78-82e2-1cf3205fcc1e))
     (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/USB-TYPE-C-TH_24P-L9.8-W9.8-H3.3.wrl"
-      (offset (xyz -0 -0.7 1.4))
+      (offset (xyz 0 -3 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 180))
     )
@@ -2897,7 +2897,7 @@
     (pad "10" thru_hole oval (at 6.4 -2.8 90) (size 1.3 2.7) (drill oval 0.700024 2.300021) (layers *.Cu *.Mask)
       (net 3 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp f752419c-6798-4677-aa42-5aa0ee46518c))
     (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/USB-A-TH_U231-091N-3GRC10-5.wrl"
-      (offset (xyz -0 -2.51 0))
+      (offset (xyz -0 -2.51 3))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -4997,7 +4997,7 @@
     (pad "S1" thru_hole oval (at 4.32 2.38 270) (size 1.2 1.8) (drill oval 0.599999 1.199998) (layers *.Cu *.Mask)
       (net 3 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp cbc253b1-5d46-407e-8b3f-e737fb5aeb49))
     (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/USB-C-SMD_TYPE-C-6PIN-2MD-073.wrl"
-      (offset (xyz 0 -1.2 0.9))
+      (offset (xyz 0 -1.2 1.6))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -5047,7 +5047,7 @@
     (pad "5" thru_hole oval (at 6.45 0.75 180) (size 1.3 2.8) (drill oval 0.799998 2.099996) (layers *.Cu *.Mask)
       (net 3 "GND") (pinfunction "Shield") (pintype "passive") (tstamp c5d4e4cc-ef76-4c25-a516-e4aa3ea1ec71))
     (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/USB-A-TH_AF-10.0-HC6.3.wrl"
-      (offset (xyz -0 -4 0))
+      (offset (xyz -0 -4 3.5))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
