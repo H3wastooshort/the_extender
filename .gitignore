@@ -35,3 +35,5 @@ hardware/bom
 *.pdf
 *.drl
 *.lck
+*.bkp
+*.dtmp
