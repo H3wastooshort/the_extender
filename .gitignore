@@ -34,3 +34,4 @@ hardware/bom
 *.zip
 *.pdf
 *.drl
+*.lck
