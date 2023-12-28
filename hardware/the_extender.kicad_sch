@@ -6033,7 +6033,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 311.15 142.24 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 01646ea2-cde6-47a9-8ee3-05910e5b27dc)
-    (property "Reference" "TP15" (at 307.34 144.78 90)
+    (property "Reference" "TP5" (at 307.34 144.78 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SWD" (at 307.34 147.32 90)
@@ -6049,7 +6049,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP15") (unit 1)
+          (reference "TP5") (unit 1)
         )
       )
     )
@@ -6211,7 +6211,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 360.68 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0d9a94e3-2208-4854-8047-7cfc9dfcf7b8)
-    (property "Reference" "TP9" (at 363.22 13.2079 0)
+    (property "Reference" "TP8" (at 363.22 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "24M" (at 363.22 15.7479 0)
@@ -6227,7 +6227,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP9") (unit 1)
+          (reference "TP8") (unit 1)
         )
       )
     )
@@ -7139,7 +7139,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 393.7 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3cd229fb-8862-44e6-a7cd-52c70ab4f36a)
-    (property "Reference" "TP13" (at 396.24 13.2079 0)
+    (property "Reference" "TP12" (at 396.24 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "seC" (at 396.24 15.7479 0)
@@ -7155,7 +7155,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP13") (unit 1)
+          (reference "TP12") (unit 1)
         )
       )
     )
@@ -7269,7 +7269,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 341.63 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3ffe5570-bd9f-45b2-b2e7-04944ca94733)
-    (property "Reference" "TP7" (at 344.17 13.2079 0)
+    (property "Reference" "TP6" (at 344.17 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "hSDA" (at 344.17 15.7479 0)
@@ -7285,7 +7285,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP7") (unit 1)
+          (reference "TP6") (unit 1)
         )
       )
     )
@@ -7294,7 +7294,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 350.52 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 413c4a63-7242-496e-b60e-8047866cf43a)
-    (property "Reference" "TP8" (at 353.06 13.2079 0)
+    (property "Reference" "TP3" (at 353.06 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "hSCL" (at 353.06 15.7479 0)
@@ -7310,7 +7310,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP8") (unit 1)
+          (reference "TP3") (unit 1)
         )
       )
     )
@@ -7820,7 +7820,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 276.86 69.85 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 58c507ec-6931-4b57-b5bb-2882e6358d65)
-    (property "Reference" "TP16" (at 279.4 65.2779 0)
+    (property "Reference" "TP1" (at 279.4 65.2779 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "BOOT" (at 279.4 67.8179 0)
@@ -7836,7 +7836,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP16") (unit 1)
+          (reference "TP1") (unit 1)
         )
       )
     )
@@ -7952,7 +7952,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 332.74 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 65361821-9a4f-4fc7-bce4-e64ee74975c5)
-    (property "Reference" "TP6" (at 335.28 13.2079 0)
+    (property "Reference" "TP10" (at 335.28 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "SCL" (at 335.28 15.7479 0)
@@ -7968,7 +7968,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP6") (unit 1)
+          (reference "TP10") (unit 1)
         )
       )
     )
@@ -8755,7 +8755,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 281.94 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 847e4b93-f630-4ca6-80b5-e346596d548a)
-    (property "Reference" "TP1" (at 284.48 13.2079 0)
+    (property "Reference" "TP2" (at 284.48 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "3V3" (at 284.48 15.7479 0)
@@ -8771,7 +8771,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP1") (unit 1)
+          (reference "TP2") (unit 1)
         )
       )
     )
@@ -8959,7 +8959,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 297.18 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8c917c35-cf52-4b6c-93a2-566be6682619)
-    (property "Reference" "TP2" (at 299.72 13.2079 0)
+    (property "Reference" "TP14" (at 299.72 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5V_A" (at 299.72 15.7479 0)
@@ -8975,7 +8975,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP2") (unit 1)
+          (reference "TP14") (unit 1)
         )
       )
     )
@@ -9379,7 +9379,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 401.32 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a72db89f-d5dd-46b3-bb1b-a6898c6bc30c)
-    (property "Reference" "TP14" (at 403.86 13.2079 0)
+    (property "Reference" "TP13" (at 403.86 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "seS" (at 403.86 15.7479 0)
@@ -9395,7 +9395,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP14") (unit 1)
+          (reference "TP13") (unit 1)
         )
       )
     )
@@ -10131,7 +10131,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 311.15 139.7 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c8e22882-df65-4b92-9967-cf4ba33b5a18)
-    (property "Reference" "TP10" (at 307.34 134.62 90)
+    (property "Reference" "TP4" (at 307.34 134.62 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SWCLK" (at 307.34 137.16 90)
@@ -10147,7 +10147,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP10") (unit 1)
+          (reference "TP4") (unit 1)
         )
       )
     )
@@ -10416,7 +10416,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 323.85 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d510c974-ff10-4db5-9425-e1aa151ea0f4)
-    (property "Reference" "TP5" (at 326.39 13.2079 0)
+    (property "Reference" "TP7" (at 326.39 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "SDA" (at 326.39 15.7479 0)
@@ -10432,7 +10432,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP5") (unit 1)
+          (reference "TP7") (unit 1)
         )
       )
     )
@@ -10517,7 +10517,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 386.08 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d8b3c410-1300-45c1-b591-b5af6e1e860c)
-    (property "Reference" "TP12" (at 388.62 13.2079 0)
+    (property "Reference" "TP11" (at 388.62 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "seW" (at 388.62 15.7479 0)
@@ -10533,7 +10533,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP12") (unit 1)
+          (reference "TP11") (unit 1)
         )
       )
     )
@@ -10618,7 +10618,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 378.46 17.78 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ddd1c791-feb5-4c57-80d5-faea003246eb)
-    (property "Reference" "TP11" (at 381 13.2079 0)
+    (property "Reference" "TP9" (at 381 13.2079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "seR" (at 381 15.7479 0)
@@ -10634,7 +10634,7 @@
     (instances
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "TP11") (unit 1)
+          (reference "TP9") (unit 1)
         )
       )
     )
