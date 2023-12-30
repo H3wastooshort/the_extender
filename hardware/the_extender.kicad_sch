@@ -4,6 +4,12 @@
 
   (paper "A3")
 
+  (title_block
+    (title "The Extender")
+    (rev "v0.0")
+    (company "H3")
+  )
+
   (lib_symbols
     (symbol "Connector:AudioJack3" (in_bom yes) (on_board yes)
       (property "Reference" "J" (at 0 8.89 0)
@@ -5239,9 +5245,23 @@
     (uuid ffec8a76-927a-41d1-a7ed-798893259fd0)
   )
 
+  (rectangle (start 153.67 241.3) (end 213.995 281.305)
+    (stroke (width 0) (type default))
+    (fill (type none))
+    (uuid 2b524e87-8161-4dba-8a35-b714499a513d)
+  )
+
+  (text "TODO: WTF does this do???\n" (at 167.005 240.665 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 84da90ff-2fd6-4355-bb74-1870c3aa469e)
+  )
   (text "TODO: Ideal Diode, MOSFET, or something" (at 113.03 32.385 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9d9b0e25-53a3-4d46-b9a3-f5a672abfc8b)
+  )
+  (text "TODO: limit voltage to 3V6" (at 401.32 127 90)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid b4251ea7-f591-4158-abd4-a25e43536a45)
   )
 
   (global_label "MIC_T" (shape input) (at 374.65 151.13 0) (fields_autoplaced)

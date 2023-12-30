@@ -6756,7 +6756,7 @@
     (property "ki_keywords" "test point tp")
     (path "/3ffe5570-bd9f-45b2-b2e7-04944ca94733")
     (attr exclude_from_pos_files)
-    (fp_text reference "TP6" (at 0 1.998) (layer "B.SilkS")
+    (fp_text reference "TP6" (at 1.7272 1.3716) (layer "B.SilkS")
         (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
       (tstamp 8af45b0b-2e6b-4c56-8ad9-612699bdf730)
     )
