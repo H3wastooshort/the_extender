@@ -432,7 +432,7 @@
   "net_settings": {
     "classes": [
       {
-        "bus_width": 12.0,
+        "bus_width": 12,
         "clearance": 0.0254,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -446,10 +446,10 @@
         "track_width": 0.0254,
         "via_diameter": 0.8,
         "via_drill": 0.4,
-        "wire_width": 6.0
+        "wire_width": 6
       },
       {
-        "bus_width": 12.0,
+        "bus_width": 12,
         "clearance": 0.0254,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -458,16 +458,15 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "PowerH",
-        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 2.0,
         "via_diameter": 1.0,
         "via_drill": 0.6,
-        "wire_width": 6.0
+        "wire_width": 6
       },
       {
-        "bus_width": 12.0,
+        "bus_width": 12,
         "clearance": 0.0254,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -476,16 +475,15 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "PowerL",
-        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "via_diameter": 0.8,
         "via_drill": 0.4,
-        "wire_width": 6.0
+        "wire_width": 6
       },
       {
-        "bus_width": 12.0,
+        "bus_width": 12,
         "clearance": 0.0254,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -494,16 +492,15 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "USB",
-        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "via_diameter": 0.6,
         "via_drill": 0.3,
-        "wire_width": 6.0
+        "wire_width": 6
       },
       {
-        "bus_width": 12.0,
+        "bus_width": 12,
         "clearance": 0.0254,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -512,126 +509,20 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "USB3",
-        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "via_diameter": 0.6,
         "via_drill": 0.3,
-        "wire_width": 6.0
+        "wire_width": 6
       }
     ],
     "meta": {
-      "version": 2
+      "version": 3
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": [
-      {
-        "netclass": "PowerH",
-        "pattern": "+5V"
-      },
-      {
-        "netclass": "PowerH",
-        "pattern": "+BATT"
-      },
-      {
-        "netclass": "PowerH",
-        "pattern": "CHG_VBUS"
-      },
-      {
-        "netclass": "PowerH",
-        "pattern": "CHG_VIN"
-      },
-      {
-        "netclass": "PowerH",
-        "pattern": "GND"
-      },
-      {
-        "netclass": "PowerL",
-        "pattern": "+3V3"
-      },
-      {
-        "netclass": "PowerL",
-        "pattern": "+5VA"
-      },
-      {
-        "netclass": "PowerL",
-        "pattern": "GNDA"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "CHG_USBC_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "CHG_USBC_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "EXT_USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "EXT_USB_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "HOST_USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "HOST_USB_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "MCU_COMP_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "MCU_COMP_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "MCU_USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "MCU_USB_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "SND_USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "SND_USB_D-"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "STOR_USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "STOR_USB_D-"
-      },
-      {
-        "netclass": "USB3",
-        "pattern": "USB3RX+"
-      },
-      {
-        "netclass": "USB3",
-        "pattern": "USB3RX-"
-      },
-      {
-        "netclass": "USB3",
-        "pattern": "USB3TX+"
-      },
-      {
-        "netclass": "USB3",
-        "pattern": "USB3TX-"
-      }
-    ]
+    "netclass_patterns": []
   },
   "pcbnew": {
     "last_paths": {
