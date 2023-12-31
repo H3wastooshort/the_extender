@@ -177,7 +177,7 @@ def enable_tx(cc):
     #print('et', bin(x1), bin(x), cc)
     i2c.writeto_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_SWITCHES1, bytes((x,)) )
 
-def set_roles(power_role = 0, data_role = 0):
+def set_roles(power_role = 1, data_role = 0):
     x = i2c.readfrom_mem(0x22, 0x03, 1)[0]
     x &= 0b01101111 # clearing both role bits
     x |= power_role << 7
@@ -628,7 +628,7 @@ def get_pdos(d):
 #
 ########################
 
-def send_command(command, data, msg_id=None, rev=0b10, power_role=0, data_role=0):
+def send_command(command, data, msg_id=None, rev=0b10, power_role=1, data_role=0):
     msg_id = increment_msg_id() if msg_id is None else msg_id
     sop_seq = [0x12, 0x12, 0x12, 0x13, 0x80]
     eop_seq = [0xff, 0x14, 0xfe, 0xa1]
@@ -667,7 +667,7 @@ def soft_reset():
 def send_advertisement(psu_advertisement):
     #data = [bytes(a) for a in psu_advertisement]
     data = psu_advertisement
-    send_command(0b1, data, power_role=1, data_role=1)
+    send_command(0b1, data, power_role=1, data_role=0)
 
 def process_psu_request(psu_advertisement, d):
     print(d)
@@ -676,11 +676,11 @@ def process_psu_request(psu_advertisement, d):
     if profile not in range(len(psu_advertisement)):
         set_power_rail('off')
     else:
-        send_command(0b11, [], power_role=1, data_role=1) # Accept
+        send_command(0b11, [], power_role=1, data_role=0) # Accept
         sleep(0.1)
         if profile == 0:
             set_power_rail('5V')
-        send_command(0b110, [], power_role=1, data_role=1) # PS_RDY
+        send_command(0b110, [], power_role=1, data_role=0) # PS_RDY
 
 ########################
 #
@@ -995,7 +995,7 @@ def loop():
     power()
     unmask_all()
     set_controls_source()
-    set_roles(power_role=1)
+    set_roles(power_role=1,data_role=0)
     set_power_rail('off')
     disable_pulldowns()
     set_wake(True)
