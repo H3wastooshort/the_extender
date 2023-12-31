@@ -9,8 +9,7 @@
 ####
 
 
-
-from machine import Pin, I2C, ADC
+from machine import Pin, I2C, ADC, freq
 from time import sleep, ticks_us, ticks_diff
 import sys
 
@@ -51,10 +50,12 @@ def set_power_rail(rail):
 ########################
 
 def enter_low_power_mode():
+    freq(3000)
     pass #opposite of normal mode
 
 def enter_normal_mode():
-    pass # enable 24M Clock, enable 3V3 for USB Hub, start hub I2C
+    freq(12000)
+    pass # enable 24M Clock Output, enable 3V3 for USB Hub, start hub I2C
 
 ########################
 #
@@ -325,7 +326,7 @@ sent_messages = []
 
 def source_flow():
   global psu_advertisement, advertisement_counter, sent_messages
-  psu_advertisement = create_pdo('fixed', 5000, 1500, 0, 8) #Try 2100mA later
+  psu_advertisement = create_pdo('fixed', 5000, 1500, 0, 8) #maybe try 2100mA
   counter = 0
   reset_msg_id()
   sleep(0.3)
