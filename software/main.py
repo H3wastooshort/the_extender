@@ -318,19 +318,7 @@ def source_flow():
         elif msg_name == "Request":
             profile_selected = True
             process_psu_request(psu_advertisement, d)
-        """elif msg_name == "Source_Capabilities":
-            # need to request a PDO!
-            pdos = get_pdos(d)
-            pdo_i, current = select_pdo(pdos)
-            # sending a message, need to increment message id
-            request_fixed_pdo(pdo_i, current, current)
-            # print("PDO requested!")
-            pdo_requested = True
-            sys.stdout.write(str(pdos))
-            sys.stdout.write('\n')
-        elif msg_name in ["Accept", "PS_RDY"]:
-            print(get_adc_vbus(), "V")
-        elif msg_name == "Vendor_Defined":
+        """elif msg_name == "Vendor_Defined":
             parse_vdm(d)
             react_vdm(d)"""
         show_msg(d)
@@ -684,49 +672,6 @@ def process_psu_request(psu_advertisement, d):
 
 ########################
 #
-# PDO request code
-#
-########################
-
-def request_fixed_pdo(num, current, max_current):
-    pdo = [0 for i in range(4)]
-
-    max_current_b = max_current // 10
-    max_current_l = max_current_b & 0xff
-    max_current_h = max_current_b >> 8
-    pdo[0] = max_current_l
-    pdo[1] |= max_current_h
-
-    current_b = current // 10
-    current_l = current_b & 0x3f
-    current_h = current_b >> 6
-    pdo[1] |= current_l << 2
-    pdo[2] |= current_h
-
-    pdo[3] |= (num+1) << 4 # object position
-    pdo[3] |= 0b1 # no suspend
-
-    send_command(0b00010, pdo)
-
-def request_pps_pdo(num, voltage, current):
-    pdo = [0 for i in range(4)]
-
-    current = current // 50
-    pdo[0] = current & 0x7f
-
-    voltage = voltage // 20
-    voltage_l = (voltage & 0x7f)
-    voltage_h = (voltage >> 7) & 0x1f
-    pdo[1] |= voltage_l << 1
-    pdo[2] = voltage_h
-
-    pdo[3] |= (num+1) << 4 # object position
-    pdo[3] |= 0b1 # no suspend
-
-    send_command(0b00010, pdo)
-
-########################
-#
 # VDM parsing and response code
 #
 ########################
@@ -825,140 +770,6 @@ def print_vdm(d):
         sys.stdout.write("VDM: str, m{} v{} o{}, ct{}: {}\n".format(svid_name, version_str, objpos_str, cmd_type_name, cmd_name))
     else:
         sys.stdout.write("VDM: unstr, m{}, d{}".format(svid_name, myhex(d["vdm_d"])))
-
-########################
-#
-# Power profile selection example code
-#
-########################
-
-expected_resistance = 8
-
-def select_pdo_for_resistance(pdos, resistance = None):
-    # finding a PDO with maximum extractable power
-    # for a given static resistance,
-    # while making sure that we don't overcurrent the PSU
-    # calculation storage lists
-    if resistance is None: resistance = expected_resistance
-    power_levels = []
-    currents = []
-    for pdo in pdos:
-        if pdo[0] != 'fixed': # skipping variable PDOs for now
-            # keeping indices in sync
-            power_levels.append(0); currents.append(0)
-            continue
-        t, voltage, max_current, oc, flags = pdo
-        voltage = voltage / 1000
-        max_current = max_current / 1000
-        # calculating the power needed
-        current = voltage / resistance
-        current = current * 1.10 # adding 10% leeway
-        if current > max_current: # current too high, skipping
-            # keeping indices in sync
-            power_levels.append(0); currents.append(0)
-            continue
-        power = voltage * current
-        power_levels.append(power)
-        currents.append(int(current*1000))
-    # finding the maximum power level
-    i = power_levels.index(max(power_levels))
-    # returning the PDO index + current we'd need
-    return i, currents[i]
-
-expected_voltage = 20
-
-def select_pdo_for_voltage(pdos, voltage=None, current=None):
-    if voltage is None: voltage = expected_voltage
-    for i, pdo in enumerate(pdos):
-        if pdo[0] != 'fixed': # skipping variable PDOs
-            continue
-        t, pdo_voltage, max_current, oc, flags = pdo
-        if pdo_voltage//1000 == voltage:
-            current = current if current else max_current
-            return i, current
-
-# example function used by default
-select_pdo = select_pdo_for_resistance
-
-########################
-#
-# Packet capture code
-#
-########################
-
-packets = []
-packets1 = [[192, 143, 16, 1, 160, 0, 255, 164, 69, 2, 114, 192, 143, 16, 1, 160, 0, 255, 164, 69, 2, 114, 192, 143, 16, 1, 160, 0, 255, 164, 69, 2, 114, 224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 192, 143, 18, 1, 160, 0, 255, 196, 22, 194, 8, 192, 143, 18, 1, 160, 0, 255, 196, 22, 194, 8, 192, 143, 18, 1, 160, 0, 255, 196, 22, 194, 8], [224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 192, 143, 20, 1, 160, 0, 255, 100, 227, 130, 135, 192, 143, 20, 1, 160, 0, 255, 100, 227, 130, 135, 192, 143, 20, 1, 160, 0, 255, 100, 227, 130, 135], [224, 161, 17, 44, 145, 1, 39, 177, 155, 38, 148, 224, 65, 0, 187, 108, 187, 168, 224, 66, 16, 44, 177, 4, 18, 171, 173, 31, 42, 224, 97, 1, 143, 120, 56, 74, 224, 99, 3, 33, 123, 0, 150, 224, 65, 2, 151, 13, 181, 70], [224, 102, 5, 81, 42, 20, 2, 224, 65, 4, 162, 168, 214, 175], [192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212], [192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107], [192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17], [192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158], [192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228], [192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91], [192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33], [192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174], [192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212], [192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107, 192, 79, 24, 1, 128, 0, 255, 49, 86, 215, 107], [192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17, 192, 79, 26, 1, 128, 0, 255, 81, 5, 23, 17], [192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158, 192, 79, 28, 1, 128, 0, 255, 241, 240, 87, 158], [192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228, 192, 79, 30, 1, 128, 0, 255, 145, 163, 151, 228], [192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91, 192, 79, 16, 1, 128, 0, 255, 240, 29, 167, 91], [192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33, 192, 79, 18, 1, 128, 0, 255, 144, 78, 103, 33], [192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174, 192, 79, 20, 1, 128, 0, 255, 48, 187, 39, 174], [192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212, 192, 79, 22, 1, 128, 0, 255, 80, 232, 231, 212], [224, 111, 23, 1, 128, 0, 255, 214, 196, 43, 238, 224, 65, 6, 142, 201, 216, 65, 224, 79, 82, 65, 128, 0, 255, 164, 37, 0, 44, 0, 0, 0, 0, 1, 0, 0, 0, 11, 0, 0, 17, 49, 174, 102, 75, 224, 97, 3, 163, 25, 54, 164, 224, 111, 25, 2, 128, 0, 255, 89, 213, 174, 67, 224, 65, 8, 137, 228, 96, 166, 224, 79, 52, 66, 128, 0, 255, 164, 37, 1, 255, 0, 0, 0, 0, 166, 70, 26, 81, 224, 97, 5, 150, 188, 85, 77, 224, 111, 27, 3, 128, 1, 255, 29, 208, 201, 152, 224, 65, 10, 165, 133, 110, 72, 224, 79, 38, 67, 128, 1, 255, 5, 12, 0, 0, 241, 253, 40, 109, 224, 97, 7, 186, 221, 91, 163, 224, 111, 29, 4, 129, 1, 255, 51, 119, 156, 139, 224, 65, 12, 144, 32, 13, 161, 224, 79, 24, 68, 129, 1, 255, 72, 165, 196, 223, 224, 97, 9, 189, 240, 227, 68, 224, 111, 47, 16, 129, 1, 255, 1, 0, 0, 0, 216, 217, 112, 117, 224, 65, 14, 188, 65, 3, 79, 224, 79, 42, 80, 129, 1, 255, 26, 0, 0, 0, 52, 141, 63, 222, 224, 97, 11, 145, 145, 237, 170, 224, 111, 33, 17, 129, 1, 255, 6, 8, 0, 0, 213, 107, 220, 226, 224, 65, 0, 187, 108, 187, 168], [224, 79, 28, 81, 129, 1, 255, 37, 164, 131, 77, 224, 97, 13, 164, 52, 142, 67]]
-packets2 = [[224, 33, 1, 138, 55, 65, 186, 224, 163, 3, 111, 172, 250, 93, 224, 166, 5, 31, 253, 238, 201, 0, 224, 0, 33, 1, 1, 138, 55, 0, 65, 186]]
-packets_pos = [ 0,0 ] # hoot-hoot,,, hewwo ;-P
-
-def record_flow():
-  while True:
-    if rxb_state()[0] == 0:
-        print(get_buffer_fast())
-        #print(get_rxb(80))
-        #print(get_message())
-    sleep(0.001)
-
-def get_buffer_fast():
-    packet = []
-    while rxb_state()[0] == 0:
-        packet.append(get_rxb(1)[0])
-    packets.append(packet)
-    return packet
-
-def gb():
-    fun = postfactum_readout if listen else get_rxb
-    return show_msg(get_message(fun))
-
-def gba():
-    # not quite working well atm, sowwy (also, mood)
-    while True:
-      try:
-        gb(); print()
-      except Exception as e:
-        raise e
-        break
-
-def postfactum_readout(length=80):
-    # A function that helps read data out of our own capture buffer instead of using the FUSB's internal buffer
-    # so, it pretends to be the FUSB FIFO read function, for parsing packets that are recorded into `packets`
-    err = 0
-    response = []
-    while len(response) < length:
-        # ran out of data? this ends here
-        if packets_pos[0] == len(packets)-1 and packets_pos[1] == len(packets[packets_pos[0]])-1:
-            # buffer underflow, returning the unfinished buffer with zeroes in the end, just like the FUSB does
-            response = [0]*(length-len(response))
-            return bytes(response)
-        # we still got data to add!
-        # is the current buffer enough?
-        remainder = length - len(response)
-        current_packet = packets[packets_pos[0]]
-        current_packet_end = current_packet[packets_pos[1]:]
-        while remainder > 0:
-            chunk_len = min(len(current_packet_end), remainder)
-            response += current_packet_end[:chunk_len]
-            remainder -= chunk_len
-            packets_pos[1] += chunk_len
-            # now, checking for overflow
-            if packets_pos[1] >= len(current_packet)-1:
-                # sanity check - this should not happen
-                if packets_pos[1] > len(current_packet):
-                    print("Alert, overcount!", packets_pos, len(current_packet_end), chunk_len)
-                # do we need to go to the next packet?
-                if len(packets)-1 <= packets_pos[0]:
-                    # next packet doesn't exist lol
-                    print("We ran out of packet")
-                    err += 1 # malformed packets cause this function to glitch and loop infinitely, hence the error counter
-                    if err == 4:
-                        return bytes(response) # lol gave up here
-                else:
-                    err = 0
-                    packets_pos[0] += 1
-                    packets_pos[1] = 0
-            current_packet = packets[packets_pos[0]]
-            current_packet_end = current_packet[packets_pos[1]:]
-        return bytes(response)
 
 ########################
 #
