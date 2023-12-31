@@ -9,91 +9,24 @@
 ####
 
 
+
 from machine import Pin, I2C, ADC
 from time import sleep, ticks_us, ticks_diff
 import sys
 
-is_source = True
-
-if is_source:
-    # non-documented hardware stuff.
-    # This is starting to get to the point that things need to be pulled out into a separate library.
-    # glad I've gotten to that point ^~^
-    p_5_a = Pin(2, Pin.OUT, value=0)
-    p_5_m = Pin(7, Pin.OUT, value=0)
-    p_vin = Pin(3, Pin.OUT, value=0)
-    p_discharge = Pin(6, Pin.OUT, value=0)
-    p_5_m.off()
-    p_5_a.off()
-    p_vin.off()
-    p_discharge.on()
-    p_led_1 = Pin(9, Pin.OUT, value=0)
-    p_led_2 = Pin(15, Pin.OUT, value=0)
-
 i2c = I2C(sda=Pin(18), scl=Pin(19), id=1, freq=400000)
 print(i2c.scan())
 
-a = ADC(Pin(28))
-print(a.read_u16())
 
-int_p = Pin(20, Pin.IN, Pin.PULL_UP)
-int_g = int_p.value
-
-def get_adc_vbus():
-    return (3.3*11*a.read_u16())/65536
-
-print(get_adc_vbus(), "V")
-
-if is_source:
-    # sanity check
-    # currently, both 5V and VIN pins are supposed to be shut off
-    vbus_v = get_adc_vbus()
-    if vbus_v > 1:
-        # enable discharge FET and wait for VBUS to discharge
-        print("VBUS is at {}, has to be discharged".format(vbus_v))
-        p_discharge.on()
-        sleep(0.3)
-        vbus_v = get_adc_vbus()
-        if vbus_v > 1:
-            # blink and enter error state
-            # maybe a FET is borked, maybe something else
-            ## remove all pullups and pulldowns? TODO
-            print("VBUS is still at {}, can't be discharged".format(vbus_v))
-            while True:
-                p_led_1.toggle()
-                sleep(0.3)
-                # infinite loop; TODO: add checks in case of longer discharge
-    else:
-        print("VBUS is at {}".format(vbus_v))
+#####
+#
+# IP5310 stuff
+#
+#####
 
 def set_power_rail(rail):
-    rail = rail.lower()
-    p_led_1.off(); p_led_2.off()
-    if rail == "off":
-        p_5_m.off()
-        p_5_a.off()
-        p_vin.off()
-        p_discharge.on()
-    elif rail == "5v":
-        p_vin.off()
-        p_discharge.on()
-        p_5_a.on()
-        p_5_m.on()
-        p_discharge.off()
-    elif rail == "vin":
-        p_5_m.off()
-        p_discharge.off()
-        p_5_a.on()
-        p_vin.on()
-        p_5_a.off()
-        p_led_1.on(); p_led_2.off()
-    else:
-        # catch-all:
-        p_5_m.off()
-        p_5_a.off()
-        p_vin.off()
-        p_discharge.on()
-        raise Exception("rail has to be one of 'off', '5v' or 'vin', was '{}'".format(rail))
+    pass
+
 
 ########################
 #
@@ -179,21 +112,6 @@ def disable_pulldowns():
     x &= clear_mask
     i2c.writeto_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_SWITCHES0, bytes((x,)) )
 
-def measure_sink(debug=False):
-    # read CC pins and see which one senses the pullup
-    read_cc(1)
-    sleep(0.001)
-    cc1_c = cc_current()
-    read_cc(2)
-    sleep(0.001)
-    cc2_c = cc_current()
-    # picking the CC pin depending on which pin can detect a pullup
-    cc = [1, 2][cc1_c < cc2_c]
-    if debug: print('m', bin(cc1_c), bin(cc2_c), cc)
-    if cc1_c == cc2_c:
-        return 0
-    return cc
-
 def measure_source(debug=False):
     # read CC pins and see which one senses the correct host current
     read_cc(1)
@@ -210,14 +128,6 @@ def measure_source(debug=False):
         cc = 0
     if debug: print('m', bin(cc1_c), bin(cc2_c), cc)
     return cc
-
-def set_controls_sink():
-    # boot: 0b00100100
-    ctrl0 = 0b00000000 # unmask all interrupts; don't autostart TX.. disable pullup current
-    i2c.writeto_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_CONTROL0, bytes((ctrl0,)) )
-    # boot: 0b00000110
-    ctrl3 = 0b00000111 # enable automatic packet retries
-    i2c.writeto_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_CONTROL3, bytes((ctrl3,)) )
 
 host_current=0b10
 
@@ -316,7 +226,7 @@ def hard_reset():
     i2c.writeto_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_CONTROL3, bytes([0b1000000]))
     return i2c.readfrom_mem(FUSB302_I2C_SLAVE_ADDR, TCPC_REG_CONTROL3, 1)
 
-def find_cc(fn=measure_sink, debug=False):
+def find_cc(fn=measure_source, debug=False):
     cc = fn(debug=debug)
     flush_receive()
     enable_tx(cc)
@@ -387,8 +297,7 @@ sent_messages = []
 
 def source_flow():
   global psu_advertisement, advertisement_counter, sent_messages
-  psu_advertisement = create_pdo('fixed', 5000, 1500, 0, 8) + \
-                       create_pdo('fixed', 19000, 5000, 0, 0)
+  psu_advertisement = create_pdo('fixed', 5000, 1500, 0, 8) #Try 2100mA later
   counter = 0
   reset_msg_id()
   sleep(0.3)
@@ -470,68 +379,6 @@ def source_flow():
   except KeyboardInterrupt:
     print("CtrlC")
     raise
-
-def sink_flow():
-  global pdo_requested, pdos, sent_messages
-  reset_msg_id()
-  try:
-   timeout = 0.00001
-   while True:
-    if rxb_state()[0] == 0: # buffer non-empty
-        d = get_message()
-        msg_types = control_message_types if d["c"] else data_message_types
-        msg_name = msg_types[d["t"]]
-        # now we do things depending on the message type that we received
-        if msg_name == "GoodCRC": # example
-            pass # print("GoodCRC")
-        elif msg_name == "Source_Capabilities":
-            # need to request a PDO!
-            pdos = get_pdos(d)
-            pdo_i, current = select_pdo(pdos)
-            # sending a message, need to increment message id
-            request_fixed_pdo(pdo_i, current, current)
-            # print("PDO requested!")
-            pdo_requested = True
-            sys.stdout.write(str(pdos))
-            sys.stdout.write('\n')
-        elif msg_name in ["Accept", "PS_RDY"]:
-            print(get_adc_vbus(), "V")
-        elif msg_name == "Vendor_Defined":
-            parse_vdm(d)
-            react_vdm(d)
-        show_msg(d)
-        for message in sent_messages:
-            sys.stdout.write('> ')
-            sys.stdout.write(myhex(message))
-            sys.stdout.write('\n')
-        sent_messages = []
-    sleep(timeout) # so that ctrlc works
-    if int_g() == 0:
-        # needs sink detach processing here lmao
-        i = interrupts()
-        print(i)
-        i_reg = i[2]
-        if i_reg & 0x80: # I_VBUSOK
-            print("I_VBUSOK")
-            #pass # just a side effect of vbus being attached
-        if i_reg & 0x40: # I_ACTIVITY
-            print("I_ACTIVITY")
-            pass # just a side effect of CC comms I think?
-        if i_reg & 0x20: # I_COMP_CHNG
-            print("I_COMP_CHNG")
-        if i_reg & 0x10: # I_CRC_CHK
-            pass # new CRC, just a side effect of CC comms
-        if i_reg & 0x8: # I_ALERT
-            print("I_ALERT")
-        if i_reg & 0x4: # I_WAKE
-            print("I_WAKE")
-        if i_reg & 0x2: # I_COLLISION
-            print("I_COLLISION")
-        if i_reg & 0x1: # I_BC_LVL
-            print("I_BC_LVL")
-  except KeyboardInterrupt:
-    print("CtrlC")
-    return
 
 ########################
 #
@@ -833,8 +680,6 @@ def process_psu_request(psu_advertisement, d):
         sleep(0.1)
         if profile == 0:
             set_power_rail('5V')
-        elif profile == 1:
-            set_power_rail('VIN')
         send_command(0b110, [], power_role=1, data_role=1) # PS_RDY
 
 ########################
@@ -1141,64 +986,27 @@ def mybin(b, j=" "):
 
 ########################
 #
-# Main loop and mode selection code
+# Main loop
 #
 ########################
-
-listen = 0
-
-# this construct allows you to switch from sink mode to listen mode
-# it likely does not let you switch into other direction hehe ouch
-# it might not be needed anymore either lol
-# but hey
-# TODO I guess
-# TODO 2: elaborate on what I wrote here
 
 def loop():
     reset()
     power()
     unmask_all()
-    if is_source:
-        set_controls_source()
-    else:
-        set_controls_sink()
-
-    if listen:
-        cc = 1
-        flush_receive()
-        disable_pulldowns()
-        sleep(0.2)
-        read_cc(cc)
-        enable_sop()
-        flush_transmit()
-        flush_receive()
-        reset_pd()
-        record_flow()
-    elif is_source:
-        set_roles(power_role=1)
-        set_power_rail('off')
-        disable_pulldowns()
-        set_wake(True)
-        enable_pullups()
-        set_mdac(0b111111)
-        cc = find_cc(fn=measure_source, debug=True)
-        while cc == 0:
-            cc = find_cc(fn=measure_source)
-        cc = find_cc(fn=measure_source, debug=True)
-        set_power_rail('5V')
-        source_flow()
-    else: # sink
-        set_roles()
-        set_wake(True)
-        set_mdac(0b111111)
-        cc = 0
-        cc = find_cc(fn=measure_sink, debug=True)
-        while cc == 0:
-            cc = find_cc(fn=measure_sink)
-        cc = find_cc(fn=measure_source, debug=True)
-        sink_flow()
-
-#listen = 1; packets = packets1; gba()
+    set_controls_source()
+    set_roles(power_role=1)
+    set_power_rail('off')
+    disable_pulldowns()
+    set_wake(True)
+    enable_pullups()
+    set_mdac(0b111111)
+    cc = find_cc(fn=measure_source, debug=True)
+    while cc == 0:
+        cc = find_cc(fn=measure_source)
+    cc = find_cc(fn=measure_source, debug=True)
+    set_power_rail('5V')
+    source_flow()
 
 while True:
     try:
