@@ -14,19 +14,47 @@ from machine import Pin, I2C, ADC
 from time import sleep, ticks_us, ticks_diff
 import sys
 
-i2c = I2C(sda=Pin(18), scl=Pin(19), id=1, freq=400000)
-print(i2c.scan())
+i2c = I2C(sda=Pin(11), scl=Pin(10), id=1, freq=100000)
+i2c_hub = I2C(sda=Pin(23), scl=Pin(24), id=2, freq=100000)
+print(i2c.scan(), start="Sys I2C:\n")
+print(i2c_hub.scan(), start="Hub I2C:\n")
 
 
-#####
+########################
 #
 # IP5310 stuff
 #
-#####
+########################
+
+def ip5310_defaults()
+    pass # set everything the enable/disble functions dont touch
+
+def enable_5V():
+    ip5310_defaults()
+    pass # toggle KEY, then enable 5V boost and disable auto-shutdown
+
+def disable_5V():
+    ip5310_defaults()
+    pass # disable auto-power-up of boost converter, then disable boost converter
 
 def set_power_rail(rail):
+    if rail == '5V':
+        enable_5V()
+    else:
+        disable_5V()
     pass
 
+########################
+#
+# USB stuff
+#
+########################
+
+def enter_low_power_mode():
+    pass #opposite of normal mode
+
+def enter_normal_mode():
+    pass # enable 24M Clock, enable 3V3 for USB Hub, start hub I2C
 
 ########################
 #
@@ -802,6 +830,7 @@ def mybin(b, j=" "):
 ########################
 
 def loop():
+    enter_low_power_mode()
     reset()
     power()
     unmask_all()
