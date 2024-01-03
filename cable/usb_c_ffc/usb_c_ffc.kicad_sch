@@ -2161,6 +2161,10 @@
     (uuid deb2c607-65c7-450c-b08e-76e93e73d125)
   )
 
+  (text "FlatFlexCable: JS10A-15P-050-4-8" (at 139.065 113.665 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 65d9c2f8-32a2-4879-b568-a6fbbf1be4de)
+  )
   (text "Layout: VBUS VBUS VBUS GND CC GND D- D+ GND RX- RX+ GND TX- TX+ GND GND"
     (at 45.72 31.115 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
