@@ -21,6 +21,21 @@
 
 ## TODO
 ### Main
- * Look for Powerbank IC with I2C thats easier to get
-### Aux
+ * Look for Powerbank IC thats easier to get
+   
+   Requirements:
+    * charge and discharge Li-Ion
+    * no above-5V fastcharging
+    * Power-Path managment
+    * Some way to manually turn it on and off
+    * no auto-on
+    * no auto-off
+   Rather have:
+    * charging power negotiantion support
+   Nice to have:
+    * USB C PD DRP
+    * integrated charge monitoring.
  * check if Audio EEPROM is 3V3 logic
+ * battery protrction stuff
+### Aux
+ * 
