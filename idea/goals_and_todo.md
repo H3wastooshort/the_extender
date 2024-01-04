@@ -21,5 +21,6 @@
 
 ## TODO
 ### Main
+ * Look for Powerbank IC with I2C thats easier to get
 ### Aux
  * check if Audio EEPROM is 3V3 logic
