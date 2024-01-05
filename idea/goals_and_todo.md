@@ -21,7 +21,7 @@
 
 ## TODO
 ### Main
- * Look for Powerbank IC thats easier to get
+ * COMPARE DIY FOOTPRINTS WITH LCSC VERSIONS!
    
    Requirements:
     * charge and discharge Li-Ion
