@@ -37,3 +37,4 @@ hardware/bom
 *.lck
 *.bkp
 *.dtmp
+cable/production
