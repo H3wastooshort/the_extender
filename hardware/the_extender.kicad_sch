@@ -3649,7 +3649,6 @@
   (no_connect (at 240.03 85.09) (uuid 30c44af3-abd7-47ca-a542-bfcedb7d80d0))
   (no_connect (at 374.65 146.05) (uuid 3918ab7f-34b8-4646-aed6-9dff1deb4c9d))
   (no_connect (at 60.96 137.16) (uuid 4862dc5a-d0c1-47a1-a405-c3c07992aedb))
-  (no_connect (at 104.14 46.99) (uuid 4e63438a-efd5-43a8-8715-5bbbee69fa99))
   (no_connect (at 374.65 74.93) (uuid 530ccae3-0f24-47f1-91ec-638f1e8c8048))
   (no_connect (at 374.65 138.43) (uuid 6a12b548-bd97-43a0-9597-855a4d71982e))
   (no_connect (at 124.46 85.09) (uuid 6aece5f4-bdad-48ed-842a-e9dd7f6b0708))
@@ -6146,31 +6145,6 @@
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "C40") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:+5V") (at 105.41 44.45 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 1b408224-7045-43d9-a316-58080c3c9848)
-    (property "Reference" "#PWR0108" (at 105.41 48.26 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+5V" (at 105.41 40.64 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 105.41 44.45 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 105.41 44.45 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e190d663-e5d0-4e15-aa42-76c472328be7))
-    (instances
-      (project "the_extender"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "#PWR0108") (unit 1)
         )
       )
     )
@@ -9501,6 +9475,31 @@
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "#PWR074") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:VBUS") (at 104.14 46.99 270) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid b23af07d-8dee-4dc4-8025-3059208ccee0)
+    (property "Reference" "#PWR082" (at 100.33 46.99 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "VBUS" (at 107.95 46.99 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (at 104.14 46.99 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 104.14 46.99 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid bf0de4b6-8fc8-422d-9ea2-80753b9327e0))
+    (instances
+      (project "the_extender"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "#PWR082") (unit 1)
         )
       )
     )
