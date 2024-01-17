@@ -6,15 +6,16 @@
 	[X] Only enable headphones if present
 	[X] Only enable microphone if present
 [X] Charge via USB C
-[?] Low Profile USB C Cable
+[-] Low Profile USB C Cable
 ### Aux
-[X] Charge other devices via USB C
+[F] Charge other devices via USB C
 [X] Have extra USB data socket
 [-] Volume Controls on headphone Cable
 	[X] HW
 	[ ] SW
 
 #### Legend
+[F] Failed / not implementing
 [ ] Not yet finished
 [-] In Progress
 [X] Done
@@ -22,8 +23,6 @@
 ## TODO
 ### Main
  * COMPARE DIY FOOTPRINTS WITH LCSC VERSIONS!
- * check if Audio EEPROM is 3V3 logic
- * battery protrction stuff
+ * reconsider DIY cable design. make version w/o USB3
+ * battery protection PCB?
  * make combined stencil
-### Aux
- * 
