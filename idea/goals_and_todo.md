@@ -22,6 +22,7 @@
 
 ## TODO
 ### Main
+ * CHECK SWREG DESIGN! (Inductor values, layout, ...)
  * COMPARE DIY FOOTPRINTS WITH LCSC VERSIONS!
  * reconsider DIY cable design. make version w/o USB3
  * battery protection PCB?
