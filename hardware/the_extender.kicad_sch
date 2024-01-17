@@ -6020,6 +6020,32 @@
     )
   )
 
+  (symbol (lib_id "Device:C") (at 329.565 189.23 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 242c4880-e770-4cd0-b834-e6e5fde7fd8e)
+    (property "Reference" "C14" (at 332.105 187.96 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "22u" (at 332.105 190.5 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" (at 330.5302 193.04 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 329.565 189.23 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 8458f083-9fb3-42b4-ad67-6a9fb7b32a56))
+    (pin "2" (uuid 328a54a7-0e70-4f73-b95c-9b4c6a7dce43))
+    (instances
+      (project "the_extender"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "C14") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:C") (at 170.18 208.28 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 25712cbc-2fa8-489a-9182-784e2d5ce4a2)
@@ -9556,32 +9582,6 @@
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "C3") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:C") (at 329.565 189.23 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid d1ae5432-64ff-45a7-8edd-a7f23451ab70)
-    (property "Reference" "C45" (at 332.105 187.96 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "1u" (at 332.105 190.5 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" (at 330.5302 193.04 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 329.565 189.23 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid b4c4faa4-5790-425a-ad65-9a1e6622683c))
-    (pin "2" (uuid 396b2742-0f2c-4112-864d-7c5ff8ce1d22))
-    (instances
-      (project "the_extender"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "C45") (unit 1)
         )
       )
     )
