@@ -1337,6 +1337,7 @@
     (at 83.805 56.022)
     (descr "QFN, 24 Pin (http://ww1.microchip.com/downloads/en/PackagingSpec/00000049BQ.pdf#page=278), generated with kicad-footprint-generator ipc_noLead_generator.py")
     (tags "QFN NoLead")
+    (property "LCSC Part" "C5187527")
     (property "Sheetfile" "the_extender.kicad_sch")
     (property "Sheetname" "")
     (path "/358c2912-210b-43c9-81df-41b228c8be41")
