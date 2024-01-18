@@ -6307,7 +6307,7 @@
     (property "Reference" "U5" (at 210.185 51.435 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "~" (at 212.09 47.625 0)
+    (property "Value" "CH334F" (at 212.09 47.625 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm" (at 212.09 47.625 0)
