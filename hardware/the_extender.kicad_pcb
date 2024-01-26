@@ -1167,6 +1167,11 @@
       (net 1 "+5V") (pinfunction "VOUT") (pintype "power_out") (thermal_bridge_angle 45) (tstamp d91cfb1a-4442-40b4-a152-43b3e6f565eb))
     (pad "P" smd rect (at 0 0 270) (size 3.1 2.21) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 2 "GND") (pinfunction "GND") (pintype "passive") (tstamp 51c24095-0d06-4893-8932-4d7db5789b9b))
+    (model ":KICAD7_3DMODEL_DIR:Package_SO.3dshapes/SO-8_3.9x4.9mm_P1.27mm.wrl"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 -90))
+    )
   )
 
   (footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" (layer "F.Cu")
@@ -3762,6 +3767,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
+    (model ":KICAD7_3DMODEL_DIR:Crystal.3dshapes/Crystal_SMD_HC49-SD.wrl"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" (layer "F.Cu")
@@ -5593,7 +5603,12 @@
       (net 76 "Net-(U2-QSPI_SD3)") (pinfunction "IO3") (pintype "bidirectional") (tstamp 1c29daff-03b0-41ec-ae93-66b563402283))
     (pad "8" smd roundrect (at 3.6 -1.905) (size 1.6 0.6) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 18 "+3V3") (pinfunction "VCC") (pintype "power_in") (tstamp 884c7034-f409-4f38-8fab-95062a745978))
-    (model "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_5.23x5.23mm_P1.27mm.wrl"
+    (model ":KICAD7_3DMODEL_DIR:Package_SO.3dshapes/SOIC-8_5.23x5.23mm_P1.27mm.wrl"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ":KICAD7_3DMODEL_DIR:Package_SO.3dshapes/SOIC-8_5.275x5.275mm_P1.27mm.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -5830,6 +5845,11 @@
       (net 2 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp cba384d5-453e-43fd-9cd5-62bedbed2303))
     (pad "S1" thru_hole oval (at 4.32 3.7 270) (size 1 2) (drill oval 0.5 1.4) (layers "*.Cu" "*.Mask")
       (net 2 "GND") (pinfunction "SHIELD") (pintype "passive") (tstamp 802ef402-8726-4a9c-8a78-abd3c7e17b8b))
+    (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/USB-C-SMD_TYPE-C-6PIN-2MD-073.wrl"
+      (offset (xyz 0 -2.5 1.5))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "easyeda2kicad:USB-A-TH_AF-10.0-HC6.3" (layer "F.Cu")
