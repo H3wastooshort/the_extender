@@ -1,3 +1,9 @@
+#### Legend
+[F] Failed / not implementing
+[ ] Not yet finished
+[-] In Progress
+[X] Done
+
 ## Goals:
 ### Main
 [-] USB PD Power SRC and Data Device (not Host)
@@ -7,18 +13,12 @@
 	[X] Only enable microphone if present
 [X] Charge via USB C
 [-] Low Profile USB C Cable
-### Aux
+### Additional
 [F] Charge other devices via USB C
 [X] Have extra USB data socket
 [-] Volume Controls on headphone Cable
 	[X] HW
 	[ ] SW
-
-#### Legend
-[F] Failed / not implementing
-[ ] Not yet finished
-[-] In Progress
-[X] Done
 
 ## TODO
 ### Main

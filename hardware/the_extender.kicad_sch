@@ -4623,7 +4623,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9d9b0e25-53a3-4d46-b9a3-f5a672abfc8b)
   )
-  (text "TODO: make 5VA switchable" (at 95.25 139.065 0)
+  (text "TODO: let MCU see HP status\n" (at 95.25 139.065 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid ae62715a-9eec-4bd8-9c14-69f944da2d16)
   )
