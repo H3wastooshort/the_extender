@@ -3614,7 +3614,6 @@
   (no_connect (at 60.96 137.16) (uuid 4862dc5a-d0c1-47a1-a405-c3c07992aedb))
   (no_connect (at 196.85 80.645) (uuid 4b17618f-0194-435c-a601-a6d8c1f8d8c6))
   (no_connect (at 374.65 74.93) (uuid 530ccae3-0f24-47f1-91ec-638f1e8c8048))
-  (no_connect (at 374.65 138.43) (uuid 6a12b548-bd97-43a0-9597-855a4d71982e))
   (no_connect (at 124.46 85.09) (uuid 6aece5f4-bdad-48ed-842a-e9dd7f6b0708))
   (no_connect (at 374.65 95.25) (uuid 6e159a82-bb83-4fca-b810-bb5a3bae515e))
   (no_connect (at 60.96 193.04) (uuid 72f06f5b-5be7-4655-a21d-8f85382c1c6d))
@@ -4622,10 +4621,6 @@
   (text "TODO: Ideal Diode, MOSFET, or something" (at 113.03 32.385 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9d9b0e25-53a3-4d46-b9a3-f5a672abfc8b)
-  )
-  (text "TODO: let MCU see HP status\n" (at 95.25 139.065 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid ae62715a-9eec-4bd8-9c14-69f944da2d16)
   )
 
   (global_label "MIC_T" (shape input) (at 374.65 151.13 0) (fields_autoplaced)
@@ -9501,6 +9496,31 @@
       (project "the_extender"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "#PWR034") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:+3.3VA") (at 374.65 138.43 270) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid bfa913d8-bf63-4df6-8202-0eb708107629)
+    (property "Reference" "#PWR031" (at 370.84 138.43 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+3.3VA" (at 377.825 138.43 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (at 374.65 138.43 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 374.65 138.43 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid ddb39d3c-5865-44eb-9acb-f1c68c42c394))
+    (instances
+      (project "the_extender"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "#PWR031") (unit 1)
         )
       )
     )

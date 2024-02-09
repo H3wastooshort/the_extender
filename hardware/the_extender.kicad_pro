@@ -434,7 +434,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.0254,
+        "clearance": 0.1016,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -451,7 +451,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.0254,
+        "clearance": 0.1016,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -468,7 +468,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.0254,
+        "clearance": 0.1016,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -485,7 +485,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.0254,
+        "clearance": 0.1016,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -502,7 +502,7 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.0254,
+        "clearance": 0.1016,
         "diff_pair_gap": 0.2,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.1,
