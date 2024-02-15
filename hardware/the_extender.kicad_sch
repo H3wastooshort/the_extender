@@ -5640,7 +5640,7 @@
   )
 
   (symbol (lib_id "Device:D_Schottky") (at 234.315 175.895 180) (unit 1)
-    (in_bom yes) (on_board yes) (dnp yes) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp yes) (fields_autoplaced)
     (uuid 0691f9a5-8bc3-4d2a-b4cf-cc7b1502097c)
     (property "Reference" "D5" (at 234.6325 170.18 0)
       (effects (font (size 1.27 1.27)))
@@ -7286,7 +7286,7 @@
   )
 
   (symbol (lib_id "Jumper:SolderJumper_2_Bridged") (at 234.315 182.88 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp no)
     (uuid 4710b9aa-ac02-4814-b336-9e0338a4c50e)
     (property "Reference" "JP3" (at 234.315 180.34 0)
       (effects (font (size 1.27 1.27)))
