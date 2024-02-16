@@ -37,4 +37,5 @@ hardware/bom
 *.lck
 *.bkp
 *.dtmp
-cable/production
+cable/USB3/gerber
+cable/USB3/production_files
