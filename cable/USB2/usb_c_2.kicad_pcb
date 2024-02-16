@@ -267,14 +267,14 @@
     )
   )
 
-  (gr_line (start 49 47.05) (end 55 47.05)
-    (stroke (width 0.15) (type default)) (layer "B.SilkS") (tstamp 5b130a0b-b6ea-4196-8ad1-ac04a974f050))
-  (gr_line (start 53.1 48.7) (end 53.1 45.4)
-    (stroke (width 0.15) (type default)) (layer "B.SilkS") (tstamp 82a3408b-ac59-4718-b715-910a60124f5e))
-  (gr_rect (start 49 45.4) (end 55 48.7)
-    (stroke (width 0.15) (type default)) (fill none) (layer "B.SilkS") (tstamp d0dc71a9-4c15-4454-adc6-04d2af97aa4d))
-  (gr_line (start 51 48.7) (end 51 45.4)
-    (stroke (width 0.15) (type default)) (layer "B.SilkS") (tstamp d96d2c31-053f-45e6-b4b5-56a1a743ab46))
+  (gr_line locked (start 49 47.05) (end 55 47.05)
+    (stroke (width 0.15) (type default)) (layer "Cmts.User") (tstamp 5b130a0b-b6ea-4196-8ad1-ac04a974f050))
+  (gr_line locked (start 53.1 48.7) (end 53.1 45.4)
+    (stroke (width 0.15) (type default)) (layer "Cmts.User") (tstamp 82a3408b-ac59-4718-b715-910a60124f5e))
+  (gr_rect locked (start 49 45.4) (end 55 48.7)
+    (stroke (width 0.15) (type default)) (fill none) (layer "Cmts.User") (tstamp d0dc71a9-4c15-4454-adc6-04d2af97aa4d))
+  (gr_line locked (start 51 48.7) (end 51 45.4)
+    (stroke (width 0.15) (type default)) (layer "Cmts.User") (tstamp d96d2c31-053f-45e6-b4b5-56a1a743ab46))
   (gr_poly
     (pts
       (xy 46.25 44.25)
@@ -286,7 +286,7 @@
     )
 
     (stroke (width 0.1) (type solid)) (fill none) (layer "Edge.Cuts") (tstamp 9121f99b-9ee3-4d61-bb65-c59af7deb1d1))
-  (gr_text locked "G  5V  G\nD- CC D+" (at 54.8 48.5) (layer "B.SilkS") (tstamp eb40428a-ce65-463a-b291-3549e1188044)
+  (gr_text locked "G  5V  G\nD- CC D+" (at 54.8 48.5) (layer "Cmts.User") (tstamp eb40428a-ce65-463a-b291-3549e1188044)
     (effects (font (face "Ubuntu Mono") (size 1 1) (thickness 0.15) bold) (justify left bottom mirror))
     (render_cache "G  5V  G\nD- CC D+" 0
       (polygon
@@ -1910,6 +1910,15 @@
         (xy 50.749449 44.2505)
         (xy 53.250551 44.2505)
       )
+    )
+  )
+  (group "" locked (id a9a6407f-1dee-44d3-95ac-de8bff96ae4e)
+    (members
+      5b130a0b-b6ea-4196-8ad1-ac04a974f050
+      82a3408b-ac59-4718-b715-910a60124f5e
+      d0dc71a9-4c15-4454-adc6-04d2af97aa4d
+      d96d2c31-053f-45e6-b4b5-56a1a743ab46
+      eb40428a-ce65-463a-b291-3549e1188044
     )
   )
 )
