@@ -39,3 +39,5 @@ hardware/bom
 *.dtmp
 cable/USB3/gerber
 cable/USB3/production_files
+cable/USB2/gerber
+cable/USB2/production_files
