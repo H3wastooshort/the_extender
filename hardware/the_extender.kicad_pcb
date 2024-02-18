@@ -5753,7 +5753,7 @@
     (pad "4" smd rect (at -0.95 -0.45) (size 0.6 1.1) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 22 "Net-(D1-RA)") (pinfunction "RA") (pintype "passive") (tstamp 1cb13b8c-f18d-4a2f-9e0d-dd8fa400ad2d))
     (model "${EASYEDA2KICAD}/easyeda2kicad.3dshapes/LED-ARRAY-SMD_4P-L1.6-W1.5-H0.6-BL-FD.wrl"
-      (offset (xyz -0 0 -0))
+      (offset (xyz -0.75 -0.75 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
