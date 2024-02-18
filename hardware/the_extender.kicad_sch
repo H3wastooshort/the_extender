@@ -6870,7 +6870,7 @@
     (property "Footprint" "easyeda2kicad:ESN-4_L2.8-W2.3-LS3.7-BL" (at 377.825 244.475 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 377.825 235.585 0)
+    (property "Datasheet" "file:///D:/OneDrive/Datenbl%C3%A4tter/2204251600_XySemi-XB4908A_C2998740.pdf" (at 377.825 235.585 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "LCSC Part" "C2998740" (at 377.825 247.015 0)
