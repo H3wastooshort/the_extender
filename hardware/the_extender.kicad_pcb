@@ -2213,7 +2213,7 @@
     (property "ki_description" "Schottky diode")
     (property "ki_keywords" "diode Schottky")
     (path "/0691f9a5-8bc3-4d2a-b4cf-cc7b1502097c")
-    (attr smd exclude_from_bom)
+    (attr smd exclude_from_pos_files exclude_from_bom)
     (fp_text reference "D5" (at 3.7 0.1 90) (layer "F.SilkS")
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp e41bb97b-3a9b-4c31-8f17-ede4c16d687d)
