@@ -27,6 +27,32 @@ The phone then connects to the CH334F USB Hub IC, which in turn connects to seve
 ## 3D-printable case
 WIP
 
+## schematic POIs
+
+### HS-100B Audio IC
+ * The Audio IC circuit is based on a low-resolution image of a reference design i found online.
+ * 5V Power to the IC gets cut va a MOSFET when the headphones are disconnected. An RC circuit prevents loose plugs from causing issues. (Turns off about 1 second after unplugging)
+ * The datasheet is quite sparse
+ * The EEPROM data lines are connected to the RP2040, so that it can emulate the EEPROM in the future. This is not requred.
+
+### IP5310 power-bank IC
+ * I2C variant is unobtainium
+ * MOSFET between VOUT and rest of system, so that power to phone and other components can be controlled
+   even though VOUT can't.
+ * if needed, a solder jumper can be cut and shottky diode put in place to prevent current flowing back into the IC
+ * KEY pin connected to RP2040. might be needed, i don't know, should turn on when detecting a load
+ * D+ and D- not connected because there is very little space. the CC lines should suffice
+
+### CH334F
+ * clock line can be grounded to use internal OSC, but this is discouraged in its datasheet.
+   RP2040 is to provide a better clock once programmed.
+ * 
+
+### RP2040
+ * main purpose is to communicate via USB C PD
+ * might supply clock for hub
+ * might be used to emulate EEPROMs for USB Hub and Audio
+
 ## more info
 
 The [idea](/idea) directory has some partially outdated notes.
