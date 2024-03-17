@@ -22,7 +22,7 @@ jobs:
 #
 #    - name: Run ERC
 #      run: |
-#        [ -f *.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
+#        [ -f hardware/*.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
 #
 #    - name: Retrieve results
 #      uses: actions/upload-artifact@v1
@@ -40,7 +40,7 @@ jobs:
 #
 #    - name: Run DRC
 #      run: |
-#        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
+#        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
 #
 #    - name: Retrieve results
 #      uses: actions/upload-artifact@v1
@@ -59,7 +59,7 @@ jobs:
 #
 #    - name: Run schematic stuff
 #      run: |
-#        [ -f *.kicad_sch ] && kiplot  -d Fabrication -s print_sch
+#        [ -f hardware/*.kicad_sch ] && kiplot  -d Fabrication -s print_sch
 
 #    - name: Retrieve results
 #      uses: actions/upload-artifact@v1
@@ -78,7 +78,7 @@ jobs:
 #
 #    - name: Run PCB stuff
 #      run: |
-#        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front gerbers
+#        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s all print_front gerbers
 #
 #    - name: Retrieve results
 #      uses: actions/upload-artifact@v1
@@ -97,7 +97,7 @@ jobs:
 
     - name: Run schematic stuff
       run: |
-        [ -f *.kicad_sch ] && kicad_cli sch export svg --output Documentation
+        kicad-cli sch export svg --output Documentation hardware/the_extender.kicad_sch
 
     - name: Retrieve results
       uses: actions/upload-artifact@v1
@@ -116,7 +116,7 @@ jobs:
 
 #    - name: Run PCB stuff
 #      run: |
-#        [ -f *.kicad_pcb ] && kicad_cli pcb render --output Documentation
+#        kicad-cli pcb render --output Documentation hardware/the_extender.kicad_sch
 
 #    - name: Retrieve results
 #      uses: actions/upload-artifact@v1
