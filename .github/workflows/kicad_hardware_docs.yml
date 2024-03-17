@@ -1,0 +1,125 @@
+name: KiCad_CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'hardware/the_extender.kicad_sch'
+      - 'hardware/the_extender.kicad_pcb'
+#  pull_request:
+#    branches: [ main ]
+#    paths:
+#      - 'hardware/the_extender.kicad_sch'
+#      - 'hardware/the_extender.kicad_pcb'
+
+jobs:
+#  ERC:
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/inti-cmnb/kicad7_auto
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Run ERC
+#      run: |
+#        [ -f *.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
+#
+#    - name: Retrieve results
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: ERC_Output
+#        path: Fabrication
+
+#  DRC:
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/inti-cmnb/kicad7_auto
+#    needs: ERC
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Run DRC
+#      run: |
+#        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
+#
+#    - name: Retrieve results
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: DRC_Output
+#        path: Fabrication
+
+#  FabSch:
+#    name: Schematic fabrication files
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/inti-cmnb/kicad7_auto
+#    needs: ERC
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Run schematic stuff
+#      run: |
+#        [ -f *.kicad_sch ] && kiplot  -d Fabrication -s print_sch
+
+#    - name: Retrieve results
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: FabSch_Output
+#        path: Fabrication
+
+#  FabPCB:
+#    name: PCB fabrication files
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/inti-cmnb/kicad7_auto
+#    needs: DRC
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Run PCB stuff
+#      run: |
+#        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front gerbers
+#
+#    - name: Retrieve results
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: FabPCB_Output
+#        path: Fabrication
+
+  DocSch:
+    name: Schematic for documentation
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad7_auto
+#    needs: ERC
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run schematic stuff
+      run: |
+        [ -f *.kicad_sch ] && kicad_cli sch export svg --output Documentation
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v1
+      with:
+        name: DocSch_Output
+        path: Documentation
+
+#  DocPCB:
+#    name: PCB renders for Documentation
+#    runs-on: ubuntu-latest
+#    container: ghcr.io/inti-cmnb/kicad7_auto
+#    needs: DRC
+
+#    steps:
+#    - uses: actions/checkout@v2
+
+#    - name: Run PCB stuff
+#      run: |
+#        [ -f *.kicad_pcb ] && kicad_cli pcb render --output Documentation
+
+#    - name: Retrieve results
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: DocImg_Output
+#        path: Documentation
