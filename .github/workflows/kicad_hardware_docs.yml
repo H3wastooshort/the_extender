@@ -26,9 +26,9 @@ jobs:
 #        [ -f hardware/*.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
 #
 #    - name: Retrieve results
-#      uses: actions/upload-artifact@v1
+#      uses: actions/upload-artifact@v4
 #      with:
-#        name: ERC_Output
+#        name: ERC
 #        path: Fabrication
 
 #  DRC:
@@ -44,9 +44,9 @@ jobs:
 #        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
 #
 #    - name: Retrieve results
-#      uses: actions/upload-artifact@v1
+#      uses: actions/upload-artifact@v4
 #      with:
-#        name: DRC_Output
+#        name: DRC
 #        path: Fabrication
 
 #  FabSch:
@@ -63,9 +63,9 @@ jobs:
 #        [ -f hardware/*.kicad_sch ] && kiplot  -d Fabrication -s print_sch
 
 #    - name: Retrieve results
-#      uses: actions/upload-artifact@v1
+#      uses: actions/upload-artifact@v4
 #      with:
-#        name: FabSch_Output
+#        name: FabSch
 #        path: Fabrication
 
 #  FabPCB:
@@ -82,9 +82,9 @@ jobs:
 #        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s all print_front gerbers
 #
 #    - name: Retrieve results
-#      uses: actions/upload-artifact@v1
+#      uses: actions/upload-artifact@v4
 #      with:
-#        name: FabPCB_Output
+#        name: FabPCB
 #        path: Fabrication
 
   DocSch:
@@ -98,13 +98,13 @@ jobs:
 
     - name: Run schematic stuff
       run: |
-        kicad-cli sch export svg --output Documentation hardware/the_extender.kicad_sch
+        kicad-cli sch export svg hardware/the_extender.kicad_sch
 
     - name: Retrieve results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
-        name: DocSch_Output
-        path: Documentation
+        name: DocSch
+        path: the_extender.svg
 
 #  DocPCB:
 #    name: PCB renders for Documentation
@@ -117,10 +117,10 @@ jobs:
 
 #    - name: Run PCB stuff
 #      run: |
-#        kicad-cli pcb render --output Documentation hardware/the_extender.kicad_sch
+#        kicad-cli pcb render --output Renders hardware/the_extender.kicad_sch
 
 #    - name: Retrieve results
-#      uses: actions/upload-artifact@v1
+#      uses: actions/upload-artifact@v4
 #      with:
-#        name: DocImg_Output
-#        path: Documentation
+#        name: DocRenders
+#        path: Renders
