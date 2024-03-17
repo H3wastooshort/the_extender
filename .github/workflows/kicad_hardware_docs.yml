@@ -19,7 +19,7 @@ jobs:
 #    container: ghcr.io/inti-cmnb/kicad7_auto
 #
 #    steps:
-#    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v4
 #
 #    - name: Run ERC
 #      run: |
@@ -37,7 +37,7 @@ jobs:
 #    needs: ERC
 #
 #    steps:
-#    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v4
 #
 #    - name: Run DRC
 #      run: |
@@ -56,7 +56,7 @@ jobs:
 #    needs: ERC
 #
 #    steps:
-#    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v4
 #
 #    - name: Run schematic stuff
 #      run: |
@@ -75,7 +75,7 @@ jobs:
 #    needs: DRC
 #
 #    steps:
-#    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v4
 #
 #    - name: Run PCB stuff
 #      run: |
@@ -94,7 +94,7 @@ jobs:
 #    needs: ERC
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Run schematic stuff
       run: |
@@ -113,7 +113,7 @@ jobs:
 #    needs: DRC
 
 #    steps:
-#    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v4
 
 #    - name: Run PCB stuff
 #      run: |
