@@ -1,0 +1,51 @@
+name: KiCad_CI
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ main ]
+#    paths:
+#      - 'hardware/the_extender.kicad_sch'
+#      - 'hardware/the_extender.kicad_pcb'
+#  pull_request:
+#    branches: [ main ]
+#    paths:
+#      - 'hardware/the_extender.kicad_sch'
+#      - 'hardware/the_extender.kicad_pcb'
+
+jobs:
+  ERC:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad7_auto
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run ERC
+      run: |
+        [ -f hardware/*.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ERC
+        path: Fabrication
+
+
+  DRC:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad7_auto
+    needs: ERC
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run DRC
+      run: |
+        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: DRC
+        path: Fabrication

@@ -7,120 +7,87 @@ on:
     paths:
       - 'hardware/the_extender.kicad_sch'
       - 'hardware/the_extender.kicad_pcb'
-#  pull_request:
-#    branches: [ main ]
-#    paths:
-#      - 'hardware/the_extender.kicad_sch'
-#      - 'hardware/the_extender.kicad_pcb'
 
 jobs:
-#  ERC:
-#    runs-on: ubuntu-latest
-#    container: ghcr.io/inti-cmnb/kicad7_auto
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#
-#    - name: Run ERC
-#      run: |
-#        [ -f hardware/*.sch ] && kiplot  -d Fabrication -s update_xml,run_erc -i
-#
-#    - name: Retrieve results
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: ERC
-#        path: Fabrication
-
-#  DRC:
-#    runs-on: ubuntu-latest
-#    container: ghcr.io/inti-cmnb/kicad7_auto
-#    needs: ERC
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#
-#    - name: Run DRC
-#      run: |
-#        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_drc -i
-#
-#    - name: Retrieve results
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: DRC
-#        path: Fabrication
-
-#  FabSch:
-#    name: Schematic fabrication files
-#    runs-on: ubuntu-latest
-#    container: ghcr.io/inti-cmnb/kicad7_auto
-#    needs: ERC
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#
-#    - name: Run schematic stuff
-#      run: |
-#        [ -f hardware/*.kicad_sch ] && kiplot  -d Fabrication -s print_sch
-
-#    - name: Retrieve results
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: FabSch
-#        path: Fabrication
-
-#  FabPCB:
-#    name: PCB fabrication files
-#    runs-on: ubuntu-latest
-#    container: ghcr.io/inti-cmnb/kicad7_auto
-#    needs: DRC
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#
-#    - name: Run PCB stuff
-#      run: |
-#        [ -f hardware/*.kicad_pcb ] && kiplot  -d Fabrication -s all print_front gerbers
-#
-#    - name: Retrieve results
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: FabPCB
-#        path: Fabrication
 
   DocSch:
     name: Schematic for documentation
     runs-on: ubuntu-latest
     container: ghcr.io/inti-cmnb/kicad7_auto
-#    needs: ERC
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: make output folder
+        run: |
+          mkdir schematic_svg
+
+      - name: export schmatic SVG
+        run: |
+          kicad-cli sch export svg --output schematic_svg hardware/the_extender.kicad_sch
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: schematic_svg
+          path: schematic_svg
+
+
+  DocPCB:
+    name: PCB renders for Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: render pcb image
+        uses: linalinn/kicad-render@main
+        with:
+          pcb_file: hardware/the_extender.kicad_pcb
+          output_path: ${{ github.workspace }}/pcb_renders
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcb_renders
+          path: pcb_renders
+
+
+
+  deploy-pages:
+    name: Deploy everything to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [DocPCB, DocSch] # FabBOM FabPCB
+      
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v3
 
-    - name: Run schematic stuff
-      run: |
-        kicad-cli sch export svg hardware/the_extender.kicad_sch
+      - name: Download schematic SVG
+        uses: actions/download-artifact@v4
+        with:
+          name: schematic_svg
 
-    - name: Retrieve results
-      uses: actions/upload-artifact@v4
-      with:
-        name: DocSch
-        path: the_extender.svg
+      - name: Download PCB renders
+        uses: actions/download-artifact@v4
+        with:
+          name: pcb_renders
 
-#  DocPCB:
-#    name: PCB renders for Documentation
-#    runs-on: ubuntu-latest
-#    container: ghcr.io/inti-cmnb/kicad7_auto
-#    needs: DRC
+      - name: Upload GitHub Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
 
-#    steps:
-#    - uses: actions/checkout@v4
-
-#    - name: Run PCB stuff
-#      run: |
-#        kicad-cli pcb render --output Renders hardware/the_extender.kicad_sch
-
-#    - name: Retrieve results
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: DocRenders
-#        path: Renders
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
