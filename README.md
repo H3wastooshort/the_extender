@@ -5,9 +5,9 @@ Hard-to-replace or -expand lithium cells, no expandable storage, and worst of al
 This projects aims to fix some of those flaws by
 combining a powerbank, USB hub, USB audio, and RP2040 IC into one very cursed PCB.
 
-![top pcb view](/images/pcb_top.png)
-![bottom pcb view](/images/pcb_bot.png)
-images as of 2024-03-15 fb29e33b6f3fa4a7d4d1bb9766dbc5967a70b5ad
+![top pcb view](https://h3wastooshort.github.io/the_extender/top.png)
+![bottom pcb view](https://h3wastooshort.github.io/the_extender/bottom.png)
+![schematic](https://h3wastooshort.github.io/the_extender/the_extender.svg)
 
 ## Working Principle
 5V power and battery charging is handled by an IP5310 powerbank IC.
