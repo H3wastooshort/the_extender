@@ -1,4 +1,4 @@
-name: KiCad_CI
+name: KiCad_hardware_docs
 
 on:
   workflow_dispatch:
