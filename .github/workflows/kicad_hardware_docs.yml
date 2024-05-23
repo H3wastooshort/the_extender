@@ -51,13 +51,31 @@ jobs:
           name: pcb_renders
           path: pcb_renders
 
+  DocPCB_GIF:
+    name: PCB renders for Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
 
+      - name: render pcb GIF
+        uses: linalinn/kicad-render@main
+        with:
+          pcb_file: hardware/the_extender.kicad_pcb
+          output_path: ${{ github.workspace }}/pcb_renders
+          animation: gif
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcb_gif
+          path: pcb_gif
 
   deploy-pages:
     name: Deploy everything to GitHub Pages
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [DocPCB, DocSch] # FabBOM FabPCB
+    needs: [DocPCB, DocSch, DocPCB_GIF] # FabBOM FabPCB
       
     permissions:
       pages: write
@@ -81,6 +99,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pcb_renders
+
+      - name: Download PCB GIF
+        uses: actions/download-artifact@v4
+        with:
+          name: pcb_gif
 
       - name: Upload GitHub Pages artifact
         if: github.ref == 'refs/heads/main'
