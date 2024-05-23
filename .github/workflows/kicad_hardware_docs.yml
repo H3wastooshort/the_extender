@@ -52,7 +52,7 @@ jobs:
           path: pcb_renders
 
   DocPCB_GIF:
-    name: PCB renders for Documentation
+    name: PCB GIF for Documentation
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -62,7 +62,7 @@ jobs:
         uses: linalinn/kicad-render@main
         with:
           pcb_file: hardware/the_extender.kicad_pcb
-          output_path: ${{ github.workspace }}/pcb_renders
+          output_path: ${{ github.workspace }}/pcb_gif
           animation: gif
 
       - name: Upload artifact

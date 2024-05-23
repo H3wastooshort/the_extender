@@ -7,6 +7,7 @@ combining a powerbank, USB hub, USB audio, and RP2040 IC into one very cursed PC
 
 ![top pcb view](https://h3wastooshort.github.io/the_extender/top.png)
 ![bottom pcb view](https://h3wastooshort.github.io/the_extender/bottom.png)
+![rotating pcb GIF](https://h3wastooshort.github.io/the_extender/rotating.gif)
 ![schematic](https://h3wastooshort.github.io/the_extender/the_extender.svg)
 
 ## Working Principle
